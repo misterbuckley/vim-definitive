@@ -1,9 +1,65 @@
-*definite.txt*  Find variable/class/function definitions without relying on tags
+*definitive.txt* Find variable/class/function definitions without relying on tags
 
 ===============================================================================
+CONTENTS                                                 *definitive-contents*
 
-*definite*
+    1. Commands ............. |definitive-commands|
+    2. Mappings ............. |definitive-mappings|
+    3. Settings ............. |definitive-settings|
 
-1. Global Options *definite-options*
 
-2. Commands *definite-commands*
+Section 1: Commands                                      *definitive-commands*
+
+                                                             *:FindDefinition*
+:FindDefinition [arg]         Search for the definition of arg. If no arg is
+                              provided, search for the definition of the |word|
+                              under the cursor
+
+                              All matches are populated into the quickfix
+                              list. If a single match is found, FindDefinition
+                              will jump to the definition immediately. If more
+                              than one match is found, FindDefinition will
+                              open the quickfix list and jump to the first
+                              match. If there is a match within the current
+                              file, FindDefinition will jump to the first
+                              match before the cursor, opening the quickfix
+                              list if there are any more matches.
+
+
+Section 2: Mappings                                      *definitive-mappings*
+
+  No mappings are created by default, so I recommend mapping |:FindDefinition|
+  to something simple, a la:
+>
+    nnoremap <Leader>d :FindDefinition
+<
+
+Section 3: Settings                                      *definitive-settings*
+
+|g:definitive_definitions|                            *g:definitive_definitions*
+
+|g:definitive_definitions| is the regex dictionary used to search for
+definitions based on filetype. To append to this dictionary or override an
+existing definition, simply extend g:definitive_definitions as follows:
+>
+    let g:definitive_definitions['javascript'] =
+    '^\s*\zs\(\(const\|let\|var\|function\|class\)\s\+%1\>\|%1\s*(.*)\s*{\)'
+
+    let g:definitive_definitions['some_other_filetype'] =
+    'some\+other.*fancy\\regex\s%1'
+<
+Note: %1 is used as the placeholder for the keyword that will be grepped for,
+so don't forget to include it somewhere in your regex.
+
+PS: If you can come up with a regex for a language that vim-definitive does
+not currently support by default, let me know or create a PR!
+
+                                                      *g:definitive-languages*
+Languages currently supported by default:
+
+  - Javascript (and Typescript)
+  - Python
+  - Ruby
+  - Vimscript
+
+ vim:tw=78:ts=8:ft=help:norl:

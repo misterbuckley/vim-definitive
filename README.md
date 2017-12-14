@@ -20,7 +20,7 @@ No mappings are created by default, so I recommend mapping :FindDefinition to so
 
     nnoremap <Leader>d :FindDefinition<CR>
 
-### Options
+### Settings
 
 `g:definite_definitions` contains the regex dictionary used to search for definitions based on filetype. To append to this dictionary or override an existing definition, simply extend `g:definite_definitions` as follows:
 

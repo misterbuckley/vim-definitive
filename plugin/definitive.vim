@@ -1,9 +1,9 @@
-if exists('g:loaded_definite')
+if exists('g:loaded_definitive')
   finish
 endif
-let g:loaded_definite = 1
+let g:loaded_definitive = 1
 
-let g:definite_definitions = {
+let g:definitive_definitions = {
       \ 'javascript': '^\s*\zs\(\(const\|let\|var\|function\|class\)\s\+%1\>\|%1\s*(.*)\s*{\)',
       \ 'python': '^\s*\zs\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
       \ 'ruby': '^\s*\zs\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
@@ -11,8 +11,8 @@ let g:definite_definitions = {
       \ 'vim': '^\s*\zs\(let\|function[!]\)\s\+\([agls]:\)\=%1\>'
       \}
 
-function! definite#FindDefinition(...)
-  if has_key(g:definite_definitions, &ft)
+function! definitive#FindDefinition(...)
+  if has_key(g:definitive_definitions, &ft)
     if a:0 > 0
       let l:wanted_definition = a:1
 
@@ -20,7 +20,7 @@ function! definite#FindDefinition(...)
       let l:wanted_definition = expand("<cword>")
     endif
 
-    let l:definition = g:definite_definitions[&ft]
+    let l:definition = g:definitive_definitions[&ft]
     let l:search_text = substitute(l:definition, "%1", l:wanted_definition, "g")
     let l:match_in_current_file = search(l:search_text, 'wcb')
 
@@ -81,4 +81,4 @@ function! s:IsInGitRepo()
   return executable('git') && system('git rev-parse --is-inside-work-tree') =~ 'true'
 endfunction
 
-command! -nargs=? FindDefinition :call definite#FindDefinition(<f-args>)
+command! -nargs=? FindDefinition :call definitive#FindDefinition(<f-args>)

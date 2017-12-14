@@ -1,0 +1,9 @@
+*definite.txt*  Find variable/class/function definitions without relying on tags
+
+===============================================================================
+
+*definite*
+
+1. Global Options *definite-options*
+
+2. Commands *definite-commands*

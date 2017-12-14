@@ -1,10 +1,10 @@
-# vim-definite
+# vim-definitive
 
 Jump to the definitions of variables, classes, functions, etc., without relying on tags. To definity and beyond!
 
 ## Usage
 
-vim-definite is definitely simple to use!
+vim-definitive is definitively simple to use!
 
 ### Commands
 
@@ -22,28 +22,28 @@ No mappings are created by default, so I recommend mapping :FindDefinition to so
 
 ### Settings
 
-`g:definite_definitions` contains the regex dictionary used to search for definitions based on filetype. To append to this dictionary or override an existing definition, simply extend `g:definite_definitions` as follows:
+`g:definitive_definitions` contains the regex dictionary used to search for definitions based on filetype. To append to this dictionary or override an existing definition, simply extend `g:definitive_definitions` as follows:
 
-    let g:definite_definitions['javascript'] = '^\s*\zs\(\(const\|let\|var\|function\|class\)\s\+%1\>\|%1\s*(.*)\s*{\)'
-    let g:definite_definitions['some_other_filetype'] = 'some\+other.*fancy\\regex\s%1'
-    
-Note: `%1` is used as the placeholder for the keyword that will be grepped for, so don't forget to include it somewhere in your regex. PS: If you can come up with a regex for a language that vim-definite does not currently support by default, let me know or create a PR!
-    
+    let g:definitive_definitions['javascript'] = '^\s*\zs\(\(const\|let\|var\|function\|class\)\s\+%1\>\|%1\s*(.*)\s*{\)'
+    let g:definitive_definitions['some_other_filetype'] = 'some\+other.*fancy\\regex\s%1'
+
+Note: `%1` is used as the placeholder for the keyword that will be grepped for, so don't forget to include it somewhere in your regex. PS: If you can come up with a regex for a language that vim-definitive does not currently support by default, let me know or create a PR!
+
 Languages currently supported by default:
 - Javascript (and Typescript)
 - Python
 - Ruby
 - Vimscript
-    
+
 ## Installation
 
 Install it however you usually install plugins.
 
 For example, if you use [Vim-Plug](https://github.com/junegunn/vim-plug), simply add to your vimrc:
 
-    Plug 'misterbuckley/vim-definite'
-    
+    Plug 'misterbuckley/vim-definitive'
+
 [Pathogen](https://github.com/tpope/vim-pathogen) users:
 
     cd ~/.vim/bundle
-    git clone https://github.com/misterbuckley/vim-definite.git
+    git clone https://github.com/misterbuckley/vim-definitive.git

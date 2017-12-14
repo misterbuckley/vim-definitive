@@ -26,8 +26,10 @@ function! definite#FindDefinition(...)
 
     let l:grepprg_save = &grepprg
     let l:grepformat_save = &grepformat
+    let l:pwd_save = getcwd()
+    exec 'cd ' . expand('%:h')
 
-    if executable('git')
+    if s:IsInGitRepo()
       set grepprg=git\ grep\ -n\ --no-color
       set grepformat=%f:%l:%m
     endif
@@ -36,6 +38,7 @@ function! definite#FindDefinition(...)
 
     let &grepprg = l:grepprg_save
     let &grepformat = l:grepformat_save
+    exec 'cd ' . l:pwd_save
 
     redraw!
 
@@ -72,6 +75,10 @@ function! definite#FindDefinition(...)
     echo "Filetype `" . &ft . "` not supported"
 
   endif
+endfunction
+
+function! s:IsInGitRepo()
+  return executable('git') && system('git rev-parse --is-inside-work-tree') =~ 'true'
 endfunction
 
 command! -nargs=? FindDefinition :call definite#FindDefinition(<f-args>)

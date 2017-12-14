@@ -12,7 +12,7 @@ let g:definite_definitions = {
       \}
 
 function! definite#FindDefinition(...)
-  if has_key(g:definition_map, &ft)
+  if has_key(g:definite_definitions, &ft)
     if a:0 > 0
       let l:wanted_definition = a:1
     else

@@ -40,6 +40,9 @@ function! definite#FindDefinition(...)
       if len(l:grep_results) > 1
         cope
         wincmd p
+
+      else
+        cclose
       endif
 
       exec l:match_in_current_file
@@ -49,7 +52,10 @@ function! definite#FindDefinition(...)
 
     else
       if len(l:grep_results) > 1
-        cope
+        copen
+
+      else
+        cclose
       endif
 
       cfir

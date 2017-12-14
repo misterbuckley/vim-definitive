@@ -24,12 +24,18 @@ function! definite#FindDefinition(...)
     let l:search_text = substitute(l:definition, "%1", l:wanted_definition, "g")
     let l:match_in_current_file = search(l:search_text, 'wcb')
 
-    if exists(':Ggrep')
-      exec "silent Ggrep! " . l:wanted_definition
+    let l:grepprg_save = &grepprg
+    let l:grepformat_save = &grepformat
 
-    else
-      exec "silent grep! " . l:wanted_definition
+    if executable('git')
+      set grepprg=git\ grep\ -n\ --no-color
+      set grepformat=%f:%l:%m
     endif
+
+    exec "silent grep! " . l:wanted_definition
+
+    let &grepprg = l:grepprg_save
+    let &grepformat = l:grepformat_save
 
     redraw!
 

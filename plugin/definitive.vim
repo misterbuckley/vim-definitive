@@ -4,11 +4,11 @@ endif
 let g:loaded_definitive = 1
 
 let g:definitive_definitions = {
-      \ 'javascript': '^\s*\zs\(\(const\|let\|var\|function\|class\)\s\+%1\>\|%1\s*(.*)\s*{\)',
-      \ 'python': '^\s*\zs\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
-      \ 'ruby': '^\s*\zs\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
-      \ 'typescript': '^\s*\zs\(\(const\|let\|var\|function\|class\)\s\+%1\>\|%1\s*(.*)\s*{\)',
-      \ 'vim': '^\s*\zs\(let\|function[!]\)\s\+\([agls]:\)\=%1\>'
+      \ 'javascript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
+      \ 'python': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
+      \ 'ruby': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
+      \ 'typescript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
+      \ 'vim': '\<\(let\|function[!]\)\s\+\([agls]:\)\=%1\>'
       \}
 
 function! definitive#FindDefinition(...)

@@ -7,7 +7,7 @@ let g:definite_definitions = {
       \ 'javascript': '^\s*\zs\(\(const\|let\|var\|function\|class\)\s\+%1\>\|%1\s*(.*)\s*{\)',
       \ 'python': '^\s*\zs\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
       \ 'ruby': '^\s*\zs\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
-      \ 'typescript': '^\s*\zs\(\(const\|let\|var\|function\)\s\+%1\>\|%1\s*(.*)\s*{\)',
+      \ 'typescript': '^\s*\zs\(\(const\|let\|var\|function\|class\)\s\+%1\>\|%1\s*(.*)\s*{\)',
       \ 'vim': '^\s*\zs\(let\|function[!]\)\s\+\([agls]:\)\=%1\>'
       \}
 

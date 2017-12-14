@@ -19,7 +19,7 @@ function! definite#FindDefinition(...)
       let l:wanted_definition = expand("<cword>")
     endif
 
-    let l:definition = g:definition_map[&ft]
+    let l:definition = g:definite_definitions[&ft]
     let l:search_text = substitute(l:definition, "%1", l:wanted_definition, "g")
     let l:match_in_current_file = search(l:search_text, 'wcb')
 

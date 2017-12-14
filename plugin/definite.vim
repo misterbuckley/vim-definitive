@@ -15,6 +15,7 @@ function! definite#FindDefinition(...)
   if has_key(g:definite_definitions, &ft)
     if a:0 > 0
       let l:wanted_definition = a:1
+
     else
       let l:wanted_definition = expand("<cword>")
     endif
@@ -38,7 +39,7 @@ function! definite#FindDefinition(...)
 
     if l:match_in_current_file
       if len(l:grep_results) > 1
-        cope
+        copen
         wincmd p
 
       else

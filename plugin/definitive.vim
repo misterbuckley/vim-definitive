@@ -30,6 +30,9 @@ function! definitive#FindDefinition(...)
     exec 'cd ' . expand('%:h')
 
     if s:IsInGitRepo()
+      let l:git_repo_root_dir = system('git rev-parse --show-toplevel')
+      exec 'cd ' . l:git_repo_root_dir
+
       set grepprg=git\ grep\ -n\ --no-color
       set grepformat=%f:%l:%m
     endif
@@ -58,6 +61,7 @@ function! definitive#FindDefinition(...)
       exec l:match_in_current_file
 
     elseif len(l:grep_results) == 0
+      cclose
       echo "Definition not found for `" . l:wanted_definition . "`"
 
     else
@@ -68,7 +72,7 @@ function! definitive#FindDefinition(...)
         cclose
       endif
 
-      cfir
+      cfirst
     endif
 
   else

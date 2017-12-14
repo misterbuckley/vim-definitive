@@ -1,10 +1,10 @@
-# Definite.vim
+# vim-definite
 
-Jump to the definitions of variables, classes, functions, etc., without relying on tags
+Jump to the definitions of variables, classes, functions, etc., without relying on tags. To definity and beyond!
 
 ## Usage
 
-definite is definitely simple to use!
+vim-definite is definitely simple to use!
 
 ### Commands
 

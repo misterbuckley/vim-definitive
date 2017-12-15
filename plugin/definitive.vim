@@ -3,7 +3,7 @@ if exists('g:loaded_definitive')
 endif
 let g:loaded_definitive = 1
 
-let g:definitive_definitions = {
+let s:default_definitions = {
       \ 'javascript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'python': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
       \ 'ruby': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
@@ -12,6 +12,8 @@ let g:definitive_definitions = {
       \}
 
 function! definitive#FindDefinition(...)
+  call s:UpdateDefinitions()
+
   if has_key(g:definitive_definitions, &ft)
     if a:0 > 0
       let l:wanted_definition = a:1
@@ -78,6 +80,15 @@ function! definitive#FindDefinition(...)
   else
     echo "Filetype `" . &ft . "` not supported"
 
+  endif
+endfunction
+
+function! s:UpdateDefinitions()
+  if exists('g:definitive_definitions')
+    let g:definitive_definitions = extend(s:default_definitions, g:definitive_definitions)
+
+  else
+    let g:definitive_definitions = s:default_definitions
   endif
 endfunction
 

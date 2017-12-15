@@ -42,11 +42,10 @@ Section 3: Settings                                      *definitive-settings*
 definitions based on filetype. To append to this dictionary or override an
 existing definition, simply extend g:definitive_definitions as follows:
 >
-    let g:definitive_definitions['javascript'] =
-    '^\s*\zs\(\(const\|let\|var\|function\|class\)\s\+%1\>\|%1\s*(.*)\s*{\)'
-
-    let g:definitive_definitions['some_other_filetype'] =
-    'some\+other.*fancy\\regex\s%1'
+    let g:definitive_definitions = {
+          \ 'javascript' = '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
+          \ 'some_other_filetype' = 'some\+other.*fancy\\regex\s%1'
+          \}
 <
 Note: %1 is used as the placeholder for the keyword that will be grepped for,
 so don't forget to include it somewhere in your regex.

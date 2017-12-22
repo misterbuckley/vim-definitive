@@ -6,7 +6,7 @@ let g:loaded_definitive = 1
 let s:default_definitions = {
       \ 'javascript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'python': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
-      \ 'ruby': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
+      \ 'ruby': '\<\(\(def\|class\|module\)\s\+%1\>\|%1\s*=\)',
       \ 'typescript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'vim': '\<\(let\|function[!]\)\s\+\([agls]:\)\=%1\>'
       \}

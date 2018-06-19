@@ -29,6 +29,11 @@ function! definitive#FindDefinition(...)
     let l:search_text = substitute(l:definition, "%1", l:wanted_definition, "g")
     let l:match_in_current_file = search(l:search_text, 'wcb')
 
+    if l:match_in_current_file
+      exec l:match_in_current_file
+      return
+    endif
+
     let l:grepprg_save = &grepprg
     let l:grepformat_save = &grepformat
     let l:pwd_save = getcwd()

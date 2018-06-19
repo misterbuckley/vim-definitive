@@ -37,6 +37,17 @@ Languages currently supported by default:
 - Ruby
 - Vimscript
 
+`g:definitive_jump_to_first_match` determines when vim-definitive will jump to the first match found
+
+If 2, always jump to the first match found. If 1, only jump to the first match found if there is only a single match. If 0, never jump to the first match found. (default: 1)
+
+Note: Regardless of what this is set to, vim-definitive will always jump to a
+match if there is one found within the current file.
+
+`g:definitive_open_quickfix` determines when vim-definitive opens the quickfix list
+
+If 2, always open the quickfix list. If 1, only open the quickfix list if there is more than one match. If 0, never open the quickfix list, even if there is more than one match. (default: 1)
+
 ## Installation
 
 Install it however you usually install plugins.
@@ -49,3 +60,4 @@ For example, if you use [Vim-Plug](https://github.com/junegunn/vim-plug), simply
 
     cd ~/.vim/bundle
     git clone https://github.com/misterbuckley/vim-definitive.git
+

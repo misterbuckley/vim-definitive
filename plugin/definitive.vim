@@ -64,7 +64,7 @@ function! definitive#FindDefinition(...)
 
     elseif len(l:grep_results) == 0
       cclose
-      echo "Definition not found for `" . l:wanted_definition . "`. Maybe try changing your cwd?"
+      echo "Definition not found for `" . l:wanted_definition . "`"
 
     else
       if len(l:grep_results) > 1

@@ -15,7 +15,7 @@ let s:definitive_jump_to_first_match = 1
 let s:definitive_open_quickfix = 1
 
 function! definitive#FindDefinition(...)
-  call s:UpdateDefinitions()
+  call s:GetSettings()
 
   if has_key(g:definitive_definitions, &ft)
     if a:0 > 0
@@ -84,7 +84,7 @@ function! definitive#FindDefinition(...)
   endif
 endfunction
 
-function! s:UpdateDefinitions()
+function! s:GetSettings()
   if exists('g:definitive_definitions')
     let g:definitive_definitions = extend(s:definitive_definitions, g:definitive_definitions)
 

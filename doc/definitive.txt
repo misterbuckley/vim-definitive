@@ -53,12 +53,22 @@ so don't forget to include it somewhere in your regex.
 PS: If you can come up with a regex for a language that vim-definitive does
 not currently support by default, let me know or create a PR!
 
-                                                      *g:definitive-languages*
-Languages currently supported by default:
+|g:definitive_jump_to_first_match|            *g:definitive_jump_to_first_match*
 
-  - Javascript (and Typescript)
-  - Python
-  - Ruby
-  - Vimscript
+If 2, always jump to the first match found.
+If 1, only jump to the first match found if there is only a single match.
+If 0, never jump to the first match found.
+default: 1
+
+Note: Regardless of what this is set to, vim-definitive will always jump to a
+match if there is one found within the current file.
+
+|g:definitive_open_quickfix|                        *g:definitive_open_quickfix*
+
+If 2, always open the quickfix list.
+If 1, only open the quickfix list if there is more than one match.
+If 0, never open the quickfix list, even if there is more than one match.
+default: 1
+
 
  vim:tw=78:ts=8:ft=help:norl:

@@ -3,7 +3,7 @@ if exists('g:loaded_definitive')
 endif
 let g:loaded_definitive = 1
 
-let s:default_definitions = {
+let s:definitive_definitions = {
       \ 'javascript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'python': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
       \ 'ruby': '\<\(\(def\|class\|module\)\s\+%1\>\|%1\s*=\)',
@@ -85,10 +85,10 @@ endfunction
 
 function! s:UpdateDefinitions()
   if exists('g:definitive_definitions')
-    let g:definitive_definitions = extend(s:default_definitions, g:definitive_definitions)
+    let g:definitive_definitions = extend(s:definitive_definitions, g:definitive_definitions)
 
   else
-    let g:definitive_definitions = s:default_definitions
+    let g:definitive_definitions = s:definitive_definitions
   endif
 endfunction
 

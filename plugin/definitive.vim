@@ -11,6 +11,9 @@ let s:definitive_definitions = {
       \ 'vim': '\<\(let\|function[!]\)\s\+\([agls]:\)\=%1\>'
       \}
 
+let s:definitive_jump_to_first_match = 1
+let s:definitive_open_quickfix = 1
+
 function! definitive#FindDefinition(...)
   call s:UpdateDefinitions()
 
@@ -51,30 +54,28 @@ function! definitive#FindDefinition(...)
     call filter(l:grep_results, 'v:val["text"] =~ l:search_text')
     call setqflist(l:grep_results)
 
-    if l:match_in_current_file
-      if len(l:grep_results) > 1
-        copen
-        wincmd p
+    if len(l:grep_results)
+      if g:definitive_jump_to_first_match == 2
+        cfirst
 
-      else
-        cclose
+      elseif g:definitive_jump_to_first_match == 1
+        if len(l:grep_results) == 1
+          cfirst
+        endif
       endif
 
-      exec l:match_in_current_file
+      if g:definitive_open_quickfix == 2
+        copen
 
-    elseif len(l:grep_results) == 0
-      cclose
-      echo "Definition not found for `" . l:wanted_definition . "`"
+      elseif g:definitive_open_quickfix == 1
+        if len(l:grep_results) > 1
+          copen
+        endif
+      endif
 
     else
-      if len(l:grep_results) > 1
-        copen
-
-      else
-        cclose
-      endif
-
-      cfirst
+      cclose
+      echo "Definition not found for `" . l:wanted_definition . "`"
     endif
 
   else
@@ -89,6 +90,14 @@ function! s:UpdateDefinitions()
 
   else
     let g:definitive_definitions = s:definitive_definitions
+  endif
+
+  if !exists('g:definitive_jump_to_first_match')
+    let g:definitive_jump_to_first_match = s:definitive_jump_to_first_match
+  endif
+
+  if !exists('g:definitive_open_quickfix')
+    let g:definitive_open_quickfix = s:definitive_open_quickfix
   endif
 endfunction
 

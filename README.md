@@ -25,8 +25,8 @@ No mappings are created by default, so I recommend mapping :FindDefinition to so
 `g:definitive_definitions` contains the regex dictionary used to search for definitions based on filetype. To append to this dictionary or override an existing definition, simply extend `g:definitive_definitions` as follows:
 
     let g:definitive_definitions = {
-          \ 'javascript' = '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
-          \ 'some_other_filetype' = 'some\+other.*fancy\\regex\s%1'
+          \ 'javascript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
+          \ 'some_other_filetype': 'some\+other.*fancy\\regex\s%1'
           \}
 
 Note: `%1` is used as the placeholder for the keyword that will be grepped for, so don't forget to include it somewhere in your regex. PS: If you can come up with a regex for a language that vim-definitive does not currently support by default, let me know or create a PR!

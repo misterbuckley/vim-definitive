@@ -11,6 +11,14 @@ let s:definitive_definitions = {
       \ 'typescript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'vim': '\<\(let\|function[!]\)\s\+\([agls]:\)\=%1\>'
       \}
+let s:definitive_root_markers = {
+      \ 'all': [ '.git', '.gitignore', '.hg', '.hgignore', 'Makefile' ],
+      \ 'javascript': [ 'package.json' ],
+      \ 'javascript.jsx': [ 'package.json' ],
+      \ 'python': [ 'Pipfile' ],
+      \ 'ruby': [ 'Gemfile' ],
+      \ 'typescript': [ 'package.json' ]
+      \}
 
 let s:definitive_jump_to_first_match = 1
 let s:definitive_open_quickfix = 1
@@ -38,12 +46,9 @@ function! definitive#FindDefinition(...)
     let l:grepprg_save = &grepprg
     let l:grepformat_save = &grepformat
     let l:pwd_save = getcwd()
-    exec 'cd ' . expand('%:h')
+    exec 'cd ' . s:GetProjectRoot()
 
     if s:IsInGitRepo()
-      let l:git_repo_root_dir = system('git rev-parse --show-toplevel')
-      exec 'cd ' . l:git_repo_root_dir
-
       set grepprg=git\ grep\ -n\ --no-color
       set grepformat=%f:%l:%m
     endif
@@ -86,7 +91,6 @@ function! definitive#FindDefinition(...)
 
   else
     echo "Filetype `" . &ft . "` not supported"
-
   endif
 endfunction
 
@@ -96,6 +100,13 @@ function! s:GetSettings()
 
   else
     let g:definitive_definitions = s:definitive_definitions
+  endif
+
+  if exists('g:definitive_root_markers')
+    let g:definitive_root_markers = extend(s:definitive_root_markers, g:definitive_root_markers)
+
+  else
+    let g:definitive_root_markers = s:definitive_root_markers
   endif
 
   if !exists('g:definitive_jump_to_first_match')
@@ -109,6 +120,40 @@ endfunction
 
 function! s:IsInGitRepo()
   return executable('git') && system('git rev-parse --is-inside-work-tree') =~ 'true'
+endfunction
+
+function! s:GetProjectRoot()
+  if s:IsInGitRepo()
+    return system('git rev-parse --show-toplevel')
+  endif
+
+  if has_key(g:definitive_root_markers, &ft)
+    let l:root_markers = extend(g:definitive_root_markers[&ft], g:definitive_root_markers['all'])
+  else
+    let l:root_markers = g:definitive_root_markers['all']
+  endif
+
+  let l:found_root = 0
+
+  let l:current_dir = expand('%:p')
+
+  while !l:found_root && l:current_dir != '/'
+    let l:current_dir = '/' . join(split(l:current_dir, '/')[:-2], '/')
+
+    for l:filename in l:root_markers
+      if filereadable(l:current_dir . '/' . l:filename) || isdirectory(l:current_dir . '/' . l:filename)
+        let l:found_root = 1
+        break
+      endif
+    endfor
+  endwhile
+
+  if l:found_root
+    return l:current_dir
+
+  else
+    return expand('%:p:h')
+  endif
 endfunction
 
 command! -nargs=? FindDefinition :call definitive#FindDefinition(<f-args>)

@@ -37,6 +37,27 @@ Languages currently supported by default:
 - Ruby
 - Vimscript
 
+`g:definitive_root_markers` is the list of project root directory markers.
+These are files or directories which typically mark the root directory of a
+given project. vim-definitive uses this list to determine where it should be
+looking when it is searching for definitions. Common examples include .git or
+.hg directories or a Makefile, Gemfile, or Pipfile, and so on. You can extend
+this list as follows:
+
+    let g:definitive_root_markers = {
+          \ 'all': [ '.git', '.gitignore', '.hg', '.hgignore', 'Makefile' ],
+          \ 'javascript': [ 'package.json' ]
+          \}
+
+Note that this is filetype-specific, and that vim-definitive will search first
+for those files listed for the current filetype, and then for any listed under
+'all'.
+
+Also note that your extensions will overwrite the defaults for that filetype.
+For example, the default for javascript is to look for package.json, so if you
+did something like `javascript: [ 'node_modules' ]`, vim-definitive would no
+longer look for the package.json file.
+
 `g:definitive_jump_to_first_match` determines when vim-definitive will jump to the first match found
 
 If 2, always jump to the first match found. If 1, only jump to the first match found if there is only a single match. If 0, never jump to the first match found. (default: 1)

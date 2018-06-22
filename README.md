@@ -29,10 +29,21 @@ No mappings are created by default, so I recommend mapping :FindDefinition to so
           \ 'some_other_filetype': 'some\+other.*fancy\\regex\s%1'
           \}
 
-Note: `%1` is used as the placeholder for the keyword that will be grepped for, so don't forget to include it somewhere in your regex. PS: If you can come up with a regex for a language that vim-definitive does not currently support by default, let me know or create a PR!
+Note: `%1` is used as the placeholder for the keyword that will be grepped for, so don't forget to include it somewhere in your regex.
+
+You can also specify that a filetype should use the same regex as another
+filetype by using 'extends' as follows:
+
+    let g:definitive_definitions = {
+        \ 'javascript.jsx': { 'extends': 'javascript' }
+        \}
+
+PS: If you can come up with a regex for a language that vim-definitive does not currently support by default, let me know or create a PR!
 
 Languages currently supported by default:
-- Javascript (and Typescript)
+- Javascript
+- Typescript
+- JSX
 - Python
 - Ruby
 - Vimscript

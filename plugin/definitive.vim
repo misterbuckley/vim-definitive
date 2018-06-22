@@ -102,6 +102,12 @@ function! s:GetSettings()
     let g:definitive_definitions = s:definitive_definitions
   endif
 
+  for l:lang in items(g:definitive_definitions)
+    if type(l:lang[1]) == 4 && has_key(l:lang[1], 'extends')
+      let g:definitive_definitions[l:lang[0]] = g:definitive_definitions[l:lang[1]['extends']]
+    endif
+  endfor
+
   if exists('g:definitive_root_markers')
     let g:definitive_root_markers = extend(s:definitive_root_markers, g:definitive_root_markers)
 

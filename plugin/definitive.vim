@@ -36,7 +36,7 @@ function! definitive#FindDefinition(...)
 
     let l:definition = g:definitive_definitions[&ft]
     let l:search_text = substitute(l:definition, "%1", l:wanted_definition, "g")
-    let l:match_in_current_file = search(l:search_text, 'wcb')
+    let l:match_in_current_file = search(l:search_text, 'wcbs')
 
     if l:match_in_current_file
       exec l:match_in_current_file

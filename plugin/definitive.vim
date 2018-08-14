@@ -8,6 +8,7 @@ let s:definitive_definitions = {
       \ 'javascript.jsx': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'python': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
       \ 'ruby': '\<\(\(def\|class\|module\)\s\+%1\>\|%1\s*=\)',
+      \ 'scala': '\<\(val\|var\|def\|class\|trait\|object\)\s\+%1\>',
       \ 'typescript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'vim': '\<\(let\|function[!]\)\s\+\([agls]:\)\=%1\>'
       \}
@@ -17,6 +18,7 @@ let s:definitive_root_markers = {
       \ 'javascript.jsx': [ 'package.json' ],
       \ 'python': [ 'Pipfile' ],
       \ 'ruby': [ 'Gemfile' ],
+      \ 'scala': [ 'build.sbt' ],
       \ 'typescript': [ 'package.json' ]
       \}
 

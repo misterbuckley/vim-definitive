@@ -46,6 +46,7 @@ Languages currently supported by default:
 - JSX
 - Python
 - Ruby
+- Scala
 - Vimscript
 
 `g:definitive_root_markers` is the list of project root directory markers.

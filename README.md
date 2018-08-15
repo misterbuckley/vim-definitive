@@ -44,6 +44,7 @@ Languages currently supported by default:
 - Javascript
 - Typescript
 - JSX
+- PHP
 - Python
 - Ruby
 - Scala

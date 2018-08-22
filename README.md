@@ -6,6 +6,8 @@ Jump to the definitions of variables, classes, functions, etc., without relying 
 
 vim-definitive is definitively simple to use!
 
+<img src="img/example.gif?raw=true" alt="Example usage in vimscript and elixir" title="Example usage in vimscript and elixir">
+
 ### Commands
 
 `:FindDefinition` uses `:grep` to search for the definition of the word under the cursor.

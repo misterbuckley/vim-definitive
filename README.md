@@ -47,6 +47,7 @@ Languages currently supported by default:
 - PHP
 - Python
 - Ruby
+- Elixir
 - Scala
 - Vimscript
 

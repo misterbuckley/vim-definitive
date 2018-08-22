@@ -4,6 +4,7 @@ endif
 let g:loaded_definitive = 1
 
 let s:definitive_definitions = {
+      \ 'elixir': '\<\(def\(p\|module\|impl\|protocol\|macro\)\=\s\+%1\>\|%1\s*=\)',
       \ 'javascript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'javascript.jsx': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'php': '\s*\(\zs\$%1\>\s*=\|\(function\s\+\)%1\s*(.*)\s*{\|class\s\+%1\s*{\|define\s*(\s*[''"]%1\)',

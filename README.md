@@ -14,6 +14,8 @@ vim-definitive is definitively simple to use!
 
 `:FindDefinition FunctionOrVariableName` greps for the definition of FunctionOrVariableName.
 
+`:SFindDefinition` and `:VFindDefinition` are like `:FindDefinition` but the results will be returned in a new horizontal or vertical split, respectively.
+
 All matches are populated into the quickfix list. If a single match is found, FindDefinition will jump to the definition immediately. If more than one match is found, FindDefinition will open the quickfix list and jump to the first match. If there is a match within the current file, FindDefinition will jump to the first match before the cursor, opening the quickfix list if there are any more matches.
 
 ### Mappings

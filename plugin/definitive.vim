@@ -167,3 +167,5 @@ function! s:GetProjectRoot()
 endfunction
 
 command! -nargs=? FindDefinition :call definitive#FindDefinition(<f-args>)
+command! -nargs=? SFindDefinition :split | call definitive#FindDefinition(<f-args>)
+command! -nargs=? VFindDefinition :vsplit | call definitive#FindDefinition(<f-args>)

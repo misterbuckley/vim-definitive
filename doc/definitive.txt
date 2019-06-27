@@ -27,6 +27,13 @@ Section 1: Commands                                      *definitive-commands*
                               match before the cursor, opening the quickfix
                               list if there are any more matches.
 
+                                                            *:SFindDefinition*
+:SFindDefinition              Same as :FindDefinition but open results in a
+                              new horizontal split.
+
+                                                            *:VFindDefinition*
+:VFindDefinition              Same as :FindDefinition but open results in a
+                              new vertical split.
 
 Section 2: Mappings                                      *definitive-mappings*
 

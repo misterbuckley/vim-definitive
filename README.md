@@ -56,6 +56,21 @@ Languages currently supported by default:
 - Scala
 - Vimscript
 
+`g:definitive_associated_filetypes` is used to tell vim-definitive to use a
+certain filetype's definition when searching from a different filetype. An
+example use case would be wanting to find the definition of a variable in a
+ruby project from inside an ERB file, which is of filetype 'eruby', not
+'ruby', normally causing vim-definitive to call off its search. You can
+specify such relationships between filetypes as follows:
+
+    let g:definitive_associated_filetypes = {
+          \  'eruby': 'ruby',
+          \  'html.handlebars': 'javascript',
+          \}
+
+This will tell vim-definitive to look for ruby variables when you're in an ERB
+template and javascript variables when you're in a Handlebars template.
+
 `g:definitive_root_markers` is the list of project root directory markers.
 These are files or directories which typically mark the root directory of a
 given project. vim-definitive uses this list to determine where it should be

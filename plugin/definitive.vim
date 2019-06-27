@@ -29,72 +29,76 @@ let s:definitive_open_quickfix = 1
 
 function! definitive#FindDefinition(...)
   call s:GetSettings()
-
   if has_key(g:definitive_definitions, &ft)
-    if a:0 > 0
-      let l:wanted_definition = a:1
-
-    else
-      let l:wanted_definition = expand("<cword>")
-    endif
-
     let l:definition = g:definitive_definitions[&ft]
-    let l:search_text = substitute(l:definition, "%1", l:wanted_definition, "g")
-    let l:match_in_current_file = search(l:search_text, 'wcbs')
 
-    if l:match_in_current_file
-      exec l:match_in_current_file
-      return
-    endif
-
-    let l:grepprg_save = &grepprg
-    let l:grepformat_save = &grepformat
-    let l:pwd_save = getcwd()
-    exec 'cd ' . s:GetProjectRoot()
-
-    if s:IsInGitRepo()
-      set grepprg=git\ grep\ -n\ --no-color
-      set grepformat=%f:%l:%m
-    endif
-
-    exec "silent grep! " . l:wanted_definition
-
-    let &grepprg = l:grepprg_save
-    let &grepformat = l:grepformat_save
-    exec 'cd ' . l:pwd_save
-
-    redraw!
-
-    let l:grep_results = getqflist()
-    call filter(l:grep_results, 'v:val["text"] =~ l:search_text')
-    call setqflist(l:grep_results)
-
-    if len(l:grep_results)
-      if g:definitive_jump_to_first_match == 2
-        cfirst
-
-      elseif g:definitive_jump_to_first_match == 1
-        if len(l:grep_results) == 1
-          cfirst
-        endif
-      endif
-
-      if g:definitive_open_quickfix == 2
-        copen
-
-      elseif g:definitive_open_quickfix == 1
-        if len(l:grep_results) > 1
-          copen
-        endif
-      endif
-
-    else
-      cclose
-      echo "Definition not found for `" . l:wanted_definition . "`"
-    endif
+  elseif has_key(g:definitive_associated_filetypes, &ft)
+    let l:definition = g:definitive_definitions[g:definitive_associated_filetypes[&ft]]
 
   else
     echo "Filetype `" . &ft . "` not supported"
+    return
+  end
+
+  if a:0 > 0
+    let l:wanted_definition = a:1
+
+  else
+    let l:wanted_definition = expand("<cword>")
+  endif
+
+  let l:search_text = substitute(l:definition, "%1", l:wanted_definition, "g")
+  let l:match_in_current_file = search(l:search_text, 'wcbs')
+
+  if l:match_in_current_file
+    exec l:match_in_current_file
+    return
+  endif
+
+  let l:grepprg_save = &grepprg
+  let l:grepformat_save = &grepformat
+  let l:pwd_save = getcwd()
+  exec 'cd ' . s:GetProjectRoot()
+
+  if s:IsInGitRepo()
+    set grepprg=git\ grep\ -n\ --no-color
+    set grepformat=%f:%l:%m
+  endif
+
+  exec "silent grep! " . l:wanted_definition
+
+  let &grepprg = l:grepprg_save
+  let &grepformat = l:grepformat_save
+  exec 'cd ' . l:pwd_save
+
+  redraw!
+
+  let l:grep_results = getqflist()
+  call filter(l:grep_results, 'v:val["text"] =~ l:search_text')
+  call setqflist(l:grep_results)
+
+  if len(l:grep_results)
+    if g:definitive_jump_to_first_match == 2
+      cfirst
+
+    elseif g:definitive_jump_to_first_match == 1
+      if len(l:grep_results) == 1
+        cfirst
+      endif
+    endif
+
+    if g:definitive_open_quickfix == 2
+      copen
+
+    elseif g:definitive_open_quickfix == 1
+      if len(l:grep_results) > 1
+        copen
+      endif
+    endif
+
+  else
+    cclose
+    echo "Definition not found for `" . l:wanted_definition . "`"
   endif
 endfunction
 
@@ -139,6 +143,10 @@ function! s:GetProjectRoot()
 
   if has_key(g:definitive_root_markers, &ft)
     let l:root_markers = extend(g:definitive_root_markers[&ft], g:definitive_root_markers['all'])
+
+  elseif has_key(g:definitive_associated_filetypes, &ft)
+    let l:root_markers = extend(g:definitive_root_markers[g:definitive_associated_filetypes[&ft]], g:definitive_root_markers['all'])
+
   else
     let l:root_markers = g:definitive_root_markers['all']
   endif

@@ -61,7 +61,7 @@ function! definitive#FindDefinition(...)
   exec 'cd ' . s:GetProjectRoot()
 
   if s:IsInGitRepo()
-    set grepprg=git\ grep\ -n\ --no-color
+    set grepprg=git\ grep\ -n\ --no-color\ --untracked
     set grepformat=%f:%l:%m
   endif
 

@@ -20,7 +20,8 @@ All matches are populated into the quickfix list. If a single match is found, Fi
 
 No mappings are created by default, so I recommend mapping :FindDefinition to something simple, a la:
 
-    nnoremap <Leader>d :FindDefinition<CR>
+    nnoremap <Leader>d :FindDefinition<CR> " Normal mode
+    vnoremap <Leader>d "ay:FindDefinition <C-R>a<CR> " Visual mode
 
 ### Settings
 

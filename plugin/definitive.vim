@@ -13,7 +13,7 @@ let s:definitive_definitions = {
       \ 'scala': '\<\(val\|var\|def\|class\|trait\|object\)\s\+%1\>',
       \ 'sh': '\<\(function\s\+%1\|%1()\|%1=\)',
       \ 'typescript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
-      \ 'vim': '\<\(let\|function[!]\)\s\+\([agls]:\)\=%1\>'
+      \ 'vim': '\<\(let\s\+\([agls]:\)\?%1\s*=\|function!\?\s\+\([agls]:\)\?%1\s*(\)'
       \}
 let s:definitive_root_markers = {
       \ 'all': [ '.git', '.gitignore', '.hg', '.hgignore', 'Makefile' ],
@@ -66,7 +66,7 @@ function! definitive#FindDefinition(...)
     set grepformat=%f:%l:%m
   endif
 
-  exec "silent grep! " . l:wanted_definition
+  exec "silent grep! " . escape(l:wanted_definition, '#')
 
   let &grepprg = l:grepprg_save
   let &grepformat = l:grepformat_save

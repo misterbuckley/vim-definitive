@@ -11,6 +11,7 @@ let s:definitive_definitions = {
       \ 'python': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
       \ 'ruby': '\<\(\(def\|class\|module\)\s\+\(self\.\)\=%1\>\|%1\s*=\)',
       \ 'scala': '\<\(val\|var\|def\|class\|trait\|object\)\s\+%1\>',
+      \ 'sh': '\<\(function\s\+%1\|%1()\|%1=\)',
       \ 'typescript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'vim': '\<\(let\|function[!]\)\s\+\([agls]:\)\=%1\>'
       \}

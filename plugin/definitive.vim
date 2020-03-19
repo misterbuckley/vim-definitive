@@ -52,7 +52,9 @@ function! definitive#FindDefinition(...)
   let l:match_in_current_file = search(l:search_text, 'wcbs')
 
   if l:match_in_current_file
-    exec l:match_in_current_file
+    call cursor(l:match_in_current_file, 0)
+    let [_, col] = searchpos(l:wanted_definition, 'c', line('.'))
+    call cursor(0, col)
     return
   endif
 

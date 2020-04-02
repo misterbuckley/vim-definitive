@@ -62,8 +62,8 @@ function! definitive#FindDefinition(...)
   exec 'cd ' . s:GetProjectRoot()
 
   if s:IsInGitRepo()
-    set grepprg=git\ grep\ -n\ --no-color\ --untracked
-    set grepformat=%f:%l:%m
+    set grepprg=git\ grep\ -n\ --no-color\ --untracked\ --column
+    set grepformat=%f:%l:%c:%m
   endif
 
   exec "silent grep! " . escape(l:wanted_definition, '#')

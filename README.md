@@ -116,4 +116,9 @@ For example, if you use [Vim-Plug](https://github.com/junegunn/vim-plug), simply
 
     cd ~/.vim/bundle
     git clone https://github.com/misterbuckley/vim-definitive.git
+    
+    
+## NOTES
+
+vim-definitive requires git version 2.19.0 or higher. If you have installed or updated vim-definitively recently and you are unable to find definitions outside of the current file, it may be because your git-grep is out of date. If you are on Ubuntu, see [this StackOverflow thread](https://stackoverflow.com/questions/19109542/installing-latest-version-of-git-in-ubuntu).
 

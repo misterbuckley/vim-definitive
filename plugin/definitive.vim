@@ -30,6 +30,7 @@ let s:definitive_open_quickfix = 1
 
 function! definitive#FindDefinition(...)
   call s:GetSettings()
+
   if has_key(g:definitive_definitions, &ft)
     let l:definition = g:definitive_definitions[&ft]
 
@@ -50,11 +51,6 @@ function! definitive#FindDefinition(...)
 
   let l:search_text = substitute(l:definition, "%1", l:wanted_definition, "g")
   let l:match_in_current_file = search(l:search_text, 'wcbs')
-
-  if l:match_in_current_file
-    call searchpos(l:wanted_definition, 'c', l:match_in_current_file)
-    return
-  endif
 
   let l:grepprg_save = &grepprg
   let l:grepformat_save = &grepformat
@@ -79,21 +75,25 @@ function! definitive#FindDefinition(...)
   call setqflist(l:grep_results)
 
   if len(l:grep_results)
-    if g:definitive_jump_to_first_match == 2
-      cfirst
-
-    elseif g:definitive_jump_to_first_match == 1
-      if len(l:grep_results) == 1
-        cfirst
-      endif
-    endif
-
     if g:definitive_open_quickfix == 2
       copen
 
     elseif g:definitive_open_quickfix == 1
       if len(l:grep_results) > 1
         copen
+      endif
+    endif
+
+    if l:match_in_current_file
+      call searchpos(l:wanted_definition, 'c', l:match_in_current_file)
+      exec "wincmd p"
+
+    elseif g:definitive_jump_to_first_match == 2
+      cfirst
+
+    elseif g:definitive_jump_to_first_match == 1
+      if len(l:grep_results) == 1
+        cfirst
       endif
     endif
 

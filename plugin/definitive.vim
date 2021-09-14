@@ -86,7 +86,6 @@ function! definitive#FindDefinition(...)
 
     if l:match_in_current_file
       call searchpos(l:wanted_definition, 'c', l:match_in_current_file)
-      exec "wincmd p"
 
     elseif g:definitive_jump_to_first_match == 2
       cfirst

@@ -98,7 +98,10 @@ function! definitive#FindDefinition(...)
 
   else
     cclose
-    echo "Definition not found for `" . l:wanted_definition . "`"
+
+    if !l:match_in_current_file
+      echo "Definition not found for `" . l:wanted_definition . "`"
+    endif
   endif
 endfunction
 

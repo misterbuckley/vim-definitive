@@ -54,6 +54,7 @@ Languages currently supported by default:
 - Ruby
 - Elixir
 - Scala
+- Kotlin
 - Vimscript
 - Shell scripts
 

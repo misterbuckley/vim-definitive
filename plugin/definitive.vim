@@ -13,7 +13,7 @@ let s:definitive_definitions = {
       \ 'ruby': '\<\(\(def\|class\|module\)\s\+\(self\.\)\=%1\>\|%1\s*=\)',
       \ 'scala': '\<\(val\|var\|def\|class\|trait\|object\)\s\+%1\>',
       \ 'sh': '\<\(function\s\+%1\|%1()\|%1=\)',
-      \ 'typescript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
+      \ 'typescript': '\<\(\(const\|let\|var\|type\|interface\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'vim': '\<\(let\s\+\([agls]:\)\?%1\s*=\|function!\?\s\+\([agls]:\)\?%1\s*(\)'
       \}
 let s:definitive_root_markers = {

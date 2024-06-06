@@ -10,7 +10,7 @@ let s:definitive_definitions = {
       \ 'kotlin': '\<\(val\|var\|fun\|class\|trait\|object\)\s\+%1\>',
       \ 'php': '\s*\(\zs\$%1\>\s*=\|\(function\s\+\)%1\s*(.*)\s*{\|class\s\+%1\s*{\|define\s*(\s*[''"]%1\)',
       \ 'python': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
-      \ 'ruby': '\<\(\(def\|class\|module\)\s\+\(self\.\)\=%1\>\|%1\s*=\)',
+      \ 'ruby': '\<\(\(def\|class\|module\|alias\)\s\+\(self\.\)\=%1\>\|%1\s*=\|\<\(alias_method\|attr_reader\|attr_accessor\|delegate\|attribute\|serialize\|scope\|has_one\|has_many\|has_and_belongs_to_many\|belongs_to\|has_one_attached\) :%1\>\)',
       \ 'scala': '\<\(val\|var\|def\|class\|trait\|object\)\s\+%1\>',
       \ 'sh': '\<\(function\s\+%1\|%1()\|%1=\)',
       \ 'typescript': '\<\(\(const\|let\|var\|type\|interface\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',

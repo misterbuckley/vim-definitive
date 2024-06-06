@@ -52,6 +52,7 @@ Languages currently supported by default:
 - PHP
 - Python
 - Ruby
+- Lua
 - Elixir
 - Scala
 - Kotlin

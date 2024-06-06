@@ -8,6 +8,7 @@ let s:definitive_definitions = {
       \ 'javascript': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'javascript.jsx': '\<\(\(const\|let\|var\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
       \ 'kotlin': '\<\(val\|var\|fun\|class\|trait\|object\)\s\+%1\>',
+      \ 'lua': '\(\(\<\([^=]\+,\s*\)\?\|\.\)%1\(\s*,[^=]\+\)\?\s*=\|\<function\s\+\(\w\+\.\)\?%1\>\)',
       \ 'php': '\s*\(\zs\$%1\>\s*=\|\(function\s\+\)%1\s*(.*)\s*{\|class\s\+%1\s*{\|define\s*(\s*[''"]%1\)',
       \ 'python': '\<\(\(def\|class\)\s\+%1\>\|%1\s*=\)',
       \ 'ruby': '\<\(\(def\|class\|module\|alias\)\s\+\(self\.\)\=%1\>\|%1\s*=\|\<\(alias_method\|attr_reader\|attr_accessor\|delegate\|attribute\|serialize\|scope\|has_one\|has_many\|has_and_belongs_to_many\|belongs_to\|has_one_attached\) :%1\>\)',

@@ -15,6 +15,16 @@ let s:definitive_definitions = {
       \ 'scala': '\<\(val\|var\|def\|class\|trait\|object\)\s\+%1\>',
       \ 'sh': '\<\(function\s\+%1\|%1()\|%1=\)',
       \ 'typescript': '\<\(\(const\|let\|var\|type\|interface\)\s\+%1\>\|\(function\s\+\)\=%1\s*(.*)\s*{\|class\s\+%1\s*{\)',
+      \ 'c': '\<\(\(struct\|enum\)\s\+%1\s*{\|\w\+\s\+%1\s*(.*)\s*{\|\w\+\s\+%1\s*[;=]\)',
+      \ 'cpp': '\<\(\(class\|struct\|enum\|namespace\)\s\+%1\>\|\w\+\s\+%1\s*(.*)\s*{\|\w\+\s\+%1\s*[;=]\)',
+      \ 'cs': '\<\(\(class\|interface\|enum\|struct\)\s\+%1\>\|\w\+\s\+%1\s*(.*)\s*{\|\w\+\s\+%1\s*[;=]\)',
+      \ 'go': '\<\(func\|type\|var\|const\)\s\+%1\>\|\<%1\s*:=',
+      \ 'java': '\<\(class\|interface\|enum\)\s\+%1\>\|\w\+\s\+%1\s*(.*)\s*{\|\w\+\s\+%1\s*[;=]',
+      \ 'perl': '\<\(sub\s\+%1\>\|\(my\|our\)\s\+\$%1\)',
+      \ 'r': '\<%1\s*<-\|\<%1\s*=\|\<%1\s*<-\s*function',
+      \ 'rust': '\<\(fn\|struct\|enum\|trait\|type\|mod\)\s\+%1\>\|\<let\s\+\(mut\s\+\)?%1\s*[:=]',
+      \ 'swift': '\<\(func\|class\|struct\|enum\|protocol\|typealias\|let\|var\)\s\+%1\>',
+      \ 'haskell': '\<\(data\|newtype\|type\|class\)\s\+%1\>\|\<%1\s*::\|\<%1\s*=',
       \ 'vim': '\<\(let\s\+\([agls]:\)\?%1\s*=\|function!\?\s\+\([agls]:\)\?%1\s*(\)'
       \}
 let s:definitive_root_markers = {
@@ -24,7 +34,17 @@ let s:definitive_root_markers = {
       \ 'python': [ 'Pipfile' ],
       \ 'ruby': [ 'Gemfile' ],
       \ 'scala': [ 'build.sbt' ],
-      \ 'typescript': [ 'package.json' ]
+      \ 'typescript': [ 'package.json' ],
+      \ 'c': [ 'Makefile' ],
+      \ 'cpp': [ 'CMakeLists.txt' ],
+      \ 'cs': [ 'project.json' ],
+      \ 'go': [ 'go.mod' ],
+      \ 'java': [ 'pom.xml' ],
+      \ 'perl': [ 'Makefile.PL' ],
+      \ 'rust': [ 'Cargo.toml' ],
+      \ 'swift': [ 'Package.swift' ],
+      \ 'haskell': [ 'stack.yaml' ],
+      \ 'r': [ 'DESCRIPTION' ]
       \}
 
 let s:definitive_jump_to_first_match = 1

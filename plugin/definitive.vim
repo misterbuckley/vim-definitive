@@ -25,6 +25,8 @@ let s:definitive_definitions = {
       \ 'rust': '\<\(fn\|struct\|enum\|trait\|type\|mod\)\s\+%1\>\|\<let\s\+\(mut\s\+\)?%1\s*[:=]',
       \ 'swift': '\<\(func\|class\|struct\|enum\|protocol\|typealias\|let\|var\)\s\+%1\>',
       \ 'haskell': '\<\(data\|newtype\|type\|class\)\s\+%1\>\|\<%1\s*::\|\<%1\s*=',
+      \ 'css': '\([.#]\)%1[^,{]*{',
+      \ 'scss': '\$%1\s*:\|@\(mixin\|function\)\s\+%1\>\|%\s*%1\s*{',
       \ 'vim': '\<\(let\s\+\([agls]:\)\?%1\s*=\|function!\?\s\+\([agls]:\)\?%1\s*(\)'
       \}
 let s:definitive_root_markers = {

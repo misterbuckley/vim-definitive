@@ -58,6 +58,16 @@ Languages currently supported by default:
 - Kotlin
 - Vimscript
 - Shell scripts
+- C
+- C++
+- C#
+- Go
+- Java
+- Perl
+- R
+- Rust
+- Swift
+- Haskell
 
 `g:definitive_associated_filetypes` is used to tell vim-definitive to use a
 certain filetype's definition when searching from a different filetype. An
